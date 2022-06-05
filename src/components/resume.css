@@ -1,0 +1,25 @@
+.resumeContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80vw;
+    margin: 30px auto;
+    gap: 30px;
+    row-gap: 80px;
+
+}
+.skill-div{
+    text-align: center;
+}
+.skillImage{
+    width: 50px;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+}
+.skillName{
+    margin: 0 auto;
+    color: white;
+    font-weight: bold;
+
+}
