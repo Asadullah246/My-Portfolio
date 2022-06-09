@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-
+import emailjs from '@emailjs/browser';
 import Send from "@material-ui/icons/Send";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,10 +63,44 @@ const InputField = withStyles({
 
 const Contact = () => {
   const classes = useStyles();
+  const[name, setName] = useState("");
+  const[email, setEmail] = useState("");
+  const[description, setDescription] = useState("");
+  const[error, setError] = useState("");
+  const[success, setSuccess] = useState("");
+  
+  const userName=(e)=>{
+ setName(e.target.value)
+  }
+  const userEmail=(e)=>{
+    setEmail(e.target.value)
+  }
+  const userDescription=(e)=>{
+    setDescription(e.target.value)
+  }
+
+  const formSubmit=(e)=>{
+    e.preventDefault();
+    console.log(name, email, description)
+    const templateParams = {
+      name: name,
+      email: email,
+      description: description,
+  };
+    emailjs.send('service_sgi3hat','template_dht28wl', templateParams, 'RfpSlyoQDXNOWTQGE')
+	.then((response) => {
+	   setSuccess("Message sent successfully")
+     setError("")
+	}, (err) => {
+setError(err)
+setSuccess("")
+	});
+    
+  }
   return (
     <Box component="div" className={classes.contactContainer}>
       <Grid container justify="center">
-        <Box component="form" className={classes.form}>
+        <Box component="form" className={classes.form} onSubmit={formSubmit}>
           <Typography variant="h5" className={classes.heading}>
             Hire or Contact me...
           </Typography>
@@ -75,6 +109,7 @@ const Contact = () => {
             label="Name"
             variant="outlined"
             inputProps={{ className: classes.input }}
+            onChange={userName}
           />
           <InputField
             fullWidth={true}
@@ -82,6 +117,7 @@ const Contact = () => {
             variant="outlined"
             inputProps={{ className: classes.input }}
             className={classes.field}
+            onChange={userEmail}
           />
           <InputField
             fullWidth={true}
@@ -90,12 +126,16 @@ const Contact = () => {
             multiline
             rows={4}
             inputProps={{ className: classes.input }}
+            onChange={userDescription}
           />
+          <p style={{color:"white"}}>{success} </p>
+          <p style={{color:"white"}}>{error} </p>
           <Button
             variant="outlined"
             fullWidth={true}
             endIcon={<Send />}
-            className={classes.button}
+            className={classes.button} type="submit"
+            
           >
             Contact Me
           </Button>

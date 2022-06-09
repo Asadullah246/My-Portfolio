@@ -18,7 +18,7 @@ import Home from "@material-ui/icons/Home";
 import Apps from "@material-ui/icons/Apps";
 import ContactMail from "@material-ui/icons/ContactMail";
 import { makeStyles } from "@material-ui/core/styles";
-import myPic from "../images/myPic.png"
+import myPic from "../images/myPicture.png"
 
 import Footer from "../components/Footer";
 
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const menuItems = [
   { listIcon: <Home />, listText: "Home", listPath: "/" },
   { listIcon: <AssignmentInd />, listText: "Skills", listPath: "/Skills" },
-  { listIcon: <Apps />, listText: "Portfolio", listPath: "/portfolio" },
+  // { listIcon: <Apps />, listText: "Portfolio", listPath: "/portfolio" },
   { listIcon: <ContactMail />, listText: "Contact", listPath: "/contact" },
 ];
 
